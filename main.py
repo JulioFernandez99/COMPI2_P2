@@ -14,35 +14,30 @@ if __name__ == '__main__':
 
     input_text ='''
 
-        function saludo():string{
-            return "Hola Mundo";
-        }
+        console.log("Hola mundo"," estoy"," probando el print");
 
-        console.log(saludo());
     '''
     
     instrucciones = g.parse(input_text)
     ts = TablaSimbolos()
-    try:
-        procesar_instrucciones(instrucciones, ts, save=True)
-        procesar_instrucciones(instrucciones,ts)
-    except Exception as e:
-        print("Error", e)
-        
-    print(ts.salida)
+    procesar_instrucciones(instrucciones, ts)
 
-    
+    print(f'''
+            .data
+                
+            {ts.dato}
 
-    # recorrer ts
-    print('Tabla de simbolos:')
-    for simbolo in ts.simbolos.values():
-        print(simbolo.id, simbolo.tipo, simbolo.valor)
+            .text
+            .globl main
+            main:
 
+            {ts.salida}
 
-    print("-----------------Errores-----------------")
-    print(ts.errores)
-        
-    
+            li a7, 10    
+            ecall
+
+    ''')
+            
    
 
 

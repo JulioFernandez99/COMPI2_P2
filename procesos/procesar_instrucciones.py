@@ -33,7 +33,6 @@ def procesar_instrucciones(instrucciones, ts,save=False) :
     
     for instr in instrucciones :
         if not save and ts.existContinue==False and ts.existBreak==False:
-           
             if isinstance(instr, Imprimir) : procesar_imprimir(instr,ts)
             elif isinstance(instr, Declaracion): procesar_declaracion(instr, ts)
             elif isinstance(instr, Asignacion): procesar_asignacion(instr, ts)
@@ -41,9 +40,6 @@ def procesar_instrucciones(instrucciones, ts,save=False) :
             elif isinstance(instr,AsignacionPosicionArray):procesar_asignacion_posicion_array(instr,ts)
             elif isinstance(instr,AsignacionPosicionMatriz):procesar_asignacion_posicion_matriz(instr,ts)
             elif isinstance(instr, If): procesar_if(instr, ts)
-                
-                
-
             elif isinstance(instr, IfElse): procesar_if_else(instr, ts)
             elif isinstance(instr, Elif): procesar_if_elif(instr, ts)
             elif isinstance(instr, Elif_ELSE): procesar_if_elif_else(instr, ts)
@@ -53,13 +49,7 @@ def procesar_instrucciones(instrucciones, ts,save=False) :
             elif isinstance(instr, Switch): procesar_switch(instr, ts)
             elif isinstance(instr, LlamadaNativaSinParamtros): procesar_llamada_funcion_nativa_sin_paramtros(instr, ts)
             elif isinstance(instr, LlamadaNativaConParamtros): procesar_llamada_funcion_nativa_con_paramtros(instr, ts)
-            elif isinstance(instr,CallFunction): 
-                valReturn=procesar_funcion(instr, ts)
-                # if valReturn!=None:
-                #     return valReturn,instr
-                
-                
-            
+            elif isinstance(instr,CallFunction): valReturn=procesar_funcion(instr, ts)
             elif isinstance(instr,AccesoStruct): procesar_asignacion_struct(instr,ts)
             elif isinstance(instr,ReturnInstr): return procesar_retorno(instr, ts), instr
             elif isinstance(instr,BreakInstr):  procesar_break(instr, ts)
@@ -70,8 +60,7 @@ def procesar_instrucciones(instrucciones, ts,save=False) :
                 print('Error: instrucción no válida----',)
                 ts.errores+="Error: instrucción no válida\n"
 
-        else:
-                
+        else:       
             if isinstance(instr, Function): guardar_funcion(instr, ts)
             elif isinstance(instr, Interface): guardar_interface(instr, ts)
                 

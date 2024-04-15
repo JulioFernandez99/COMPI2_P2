@@ -31,11 +31,10 @@ def resolver_expresion(expCad, ts) :
             return None
    
     elif isinstance(expCad, ExpresionDobleComilla) :
-        try:
-            return expCad.val#.replace('"',"")
-        except:
-            #print("Error2: variable no declarada ")
-            return None
+        msg = ts.generateMsg()
+        cadena = expCad.val.replace('"','')
+        ts.dato += f'msg{msg}: .asciz "{cadena}"\n'
+        return f'msg{msg}', len(cadena)
             
     elif isinstance(expCad, ExpresionComilla):
         try:

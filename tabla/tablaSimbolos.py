@@ -27,12 +27,17 @@ class Simbolos(): #VALOR - NODO
 
 class TablaSimbolos():
 
-    def __init__(self, simbolos = {}, salida="",errores="",existBreak=False,existContinue=False):
+    def __init__(self, simbolos = {}, salida="",errores="",existBreak=False,existContinue=False,dato=''):
         self.simbolos = simbolos
         self.salida = salida
+        self.dato = dato
         self.errores = errores 
         self.existBreak=existBreak
         self.existContinue=existContinue 
+        self.temporal = -1
+        self.label = -1
+        self.msg = -1
+
 
     def agregar(self, simbolo):
         self.simbolos[simbolo.id] = simbolo
@@ -51,3 +56,27 @@ class TablaSimbolos():
             print('Error:variable no declarada')
         else:
             self.simbolos[id].valor = valor
+
+
+    def generateTemporal(self):
+        self.temporal += 1
+        if self.temporal == 7:
+            self.temporal = 0
+        return self.temporal
+    
+    def lastTemporal(self):
+        return self.temporal
+
+    def generateLabel(self):
+        self.label += 1
+        return self.label
+    
+    def lastLabel(self):
+        return self.label
+    
+    def generateMsg(self):
+        self.msg += 1
+        return self.msg
+    
+    def lastMsg(self):
+        return self.msg
