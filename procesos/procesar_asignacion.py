@@ -11,20 +11,38 @@ def procesar_asignacion(instr, ts):
     id = instr.id
     exp = resolver_expresion(instr.exp, ts)
     vls = ts.obtener(id) 
+
+
     
-    #print("llegue aca*-----------------",vls.tipo,exp,type(exp),instr.exp)
+    
+    #zprint("llegue aca*-----------------",vls.tipo,exp,type(exp),instr.exp)
     
     if exp!="ERARA91":#este error es para cuando se intenta acceder a una posicion que no existe en el array
         
         if vls.tipo == TIPO_DATO.ENTERO and type(exp) == int and vls.constante == False:
             ts.actualizar(id, exp)
+            lasttemporal = ts.lastTemporal()
+            temporal = ts.generateTemporal()
+            ts.salida += f'la t{temporal}, {id}\n'
+            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.DECIMAL and type(exp) == float and vls.constante == False:
             ts.actualizar(id, exp)
-        
+            lasttemporal = ts.lastTemporal()
+            temporal = ts.generateTemporal()
+            ts.salida += f'la t{temporal}, {id}\n'
+            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.BOOLEAN and type(exp) == bool and vls.constante == False:
             ts.actualizar(id, exp) 
+            lasttemporal = ts.lastTemporal()
+            temporal = ts.generateTemporal()
+            ts.salida += f'la t{temporal}, {id}\n'
+            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.STRING and type(exp) == str and vls.constante == False:
             ts.actualizar(id, exp)
+            lasttemporal = ts.lastTemporal()
+            temporal = ts.generateTemporal()
+            ts.salida += f'la t{temporal}, {id}\n'
+            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.CHAR and type(exp) == str and vls.constante == False:
             ts.actualizar(id, exp)
         elif vls.tipo == "RFOROF":

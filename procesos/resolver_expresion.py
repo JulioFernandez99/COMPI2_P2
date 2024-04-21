@@ -23,7 +23,9 @@ def resolver_expresion(expCad, ts) :
     
     
     if isinstance(expCad, ExpresionBinaria) :
+        
         exp = resolver_expresion_aritmetica(expCad, ts)
+        
         try:
             return exp
         except:
@@ -45,23 +47,27 @@ def resolver_expresion(expCad, ts) :
             
     elif isinstance(expCad, ExpresionID):  
         
+        
         exp_id =  ts.obtener(expCad.id)
+        
         if exp_id.valor is None:
             if exp_id.props is not None:
+                
                 return exp_id.props
            
         try:
+
             return ts.obtener(expCad.id).valor
         except:
             return None
         
 
     elif isinstance(expCad, ExpresionNumero):
-        try:
-            return expCad.val
-        except:
-            #print("Error4: variable no declarada")
-            return None
+        
+        temporal = f'{ts.generateTemporal()}'
+        
+        ts.salida += f'addi {temporal}, zero, {expCad.val}\n'
+        return temporal
         
     elif isinstance(expCad, ExpresionLogica):
         #print("Expresion logica--------")

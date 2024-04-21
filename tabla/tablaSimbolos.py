@@ -37,7 +37,23 @@ class TablaSimbolos():
         self.temporal = -1
         self.label = -1
         self.msg = -1
+        self.stack = ["t0","t1","t2","s0","s1","a0","a1","a2","a3","a4","a5","a6","a7","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","t3","t4","t5","t6"]
+        self.last_temp=[]
 
+    def stack_exist(self,elemento):
+        return elemento in self.stack
+    
+    def stack_push(self,elemento):
+        self.stack.append(elemento)
+
+    def stack_search_pop(self,elemento):
+        for i in range(len(self.stack)):
+            if self.stack[i] == elemento:
+                # Si se encuentra el elemento, eliminarlo de la pila
+                self.stack.pop(i)
+                return 
+        # Si el elemento no se encuentra en la pila, se devuelve None
+        return None
 
     def agregar(self, simbolo):
         self.simbolos[simbolo.id] = simbolo
@@ -46,8 +62,7 @@ class TablaSimbolos():
         if not id in self.simbolos:
             print('Error:variable no declarada')
             self.errores += 'Error:variable no declarada\n'
-            
-            
+              
         else:
             return self.simbolos[id]
     
@@ -58,14 +73,22 @@ class TablaSimbolos():
             self.simbolos[id].valor = valor
 
 
+    # def generateTemporal(self):
+    #     self.temporal += 1
+    #     if self.temporal == 7:
+    #         self.temporal = 0
+    #     return self.temporal
+
     def generateTemporal(self):
-        self.temporal += 1
-        if self.temporal == 7:
-            self.temporal = 0
-        return self.temporal
+        val=self.stack.pop()
+        self.last_temp.append(val)
+        return val
+    
+    # def lastTemporal(self):
+    #     return self.temporal
     
     def lastTemporal(self):
-        return self.temporal
+        return self.last_temp.pop()
 
     def generateLabel(self):
         self.label += 1

@@ -280,20 +280,24 @@ def declaracion_sin_tipo_con_valor(id,tipoValor,exp,ts):
 def procesar_declaracion(instr, ts):
     from procesos.resolver_expresion import resolver_expresion
     
+    
     id = instr.id
-    #print("instr.exp--------",instr.exp)
+
     exp = resolver_expresion(instr.exp, ts)
     
     tipoDec = instr.tipodec  
     tipoVariable = instr.tipovar 
     tipoValor = type(exp)
-    
-    
-    # print("tipoValor",tipoValor)
-    # print("tipoDec",tipoDec)
-    #print("tipoVariable****",tipoVariable)
-    # print("tipoValor",tipoValor)
-    # print("exp",type(exp.replace('"','')))
+
+    id = instr.id
+   
+    simbolo = Simbolos(id, TIPO_DATO.ENTERO, exp)
+    ts.agregar(simbolo)
+    ts.dato += f'{id}: .word 0\n'
+    lasttemporal = ts.lastTemporal()
+    temporal = ts.generateTemporal()
+    ts.salida += f'la {temporal}, {id}\n'
+    ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
     
     if exp!="ERARA91":
         
@@ -311,7 +315,7 @@ def procesar_declaracion(instr, ts):
             declaracion_const(exp,tipoVariable, tipoDec, tipoValor, id, ts)
             
         elif tipoVariable==None and tipoDec!=None and tipoDec!="const" :
-            #print("Declaracion sin tipo y con valor***")
+            #---print("Declaracion sin tipo y con valor***")
             declaracion_sin_tipo_con_valor(id,tipoValor,exp,ts)
             
         else:

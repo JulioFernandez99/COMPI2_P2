@@ -13,8 +13,8 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
-
-        console.log("Hola mundo"," estoy"," probando el print");
+            var a = 7 - (5 + 10 * (2 + 4 * (5 + 2 * 3)) - 8 * 3 * 3) + 50 * (6 * 2);
+            console.log("hola mundo"," valor ");
 
     '''
     
