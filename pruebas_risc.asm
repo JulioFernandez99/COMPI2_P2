@@ -1,4 +1,4 @@
-.data ;pruebas
+.data
 result: .word 0       #Variable para almacenar
 msg_suma: .asciz "La suma es: "
 

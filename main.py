@@ -13,12 +13,14 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
-            if(100>50){
+            if(10>50){
                 console.log("PRIMER IF CORRECTO");
-            }else if(10<50){
+            }else if(100<50){
                 console.log("SEGUNDO IF CORRECTO");
-            }else if(10==10){
+            }else if(10==110){
                 console.log("TERCER IF CORRECTO");
+            }else{
+                console.log("ELSE");
             }
             
 
