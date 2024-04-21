@@ -23,26 +23,26 @@ def procesar_asignacion(instr, ts):
             ts.actualizar(id, exp)
             lasttemporal = ts.lastTemporal()
             temporal = ts.generateTemporal()
-            ts.salida += f'la t{temporal}, {id}\n'
-            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
+            ts.salida += f'la {temporal}, {id}\n'
+            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.DECIMAL and type(exp) == float and vls.constante == False:
             ts.actualizar(id, exp)
             lasttemporal = ts.lastTemporal()
             temporal = ts.generateTemporal()
-            ts.salida += f'la t{temporal}, {id}\n'
-            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
+            ts.salida += f'la {temporal}, {id}\n'
+            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.BOOLEAN and type(exp) == bool and vls.constante == False:
             ts.actualizar(id, exp) 
             lasttemporal = ts.lastTemporal()
             temporal = ts.generateTemporal()
-            ts.salida += f'la t{temporal}, {id}\n'
-            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
+            ts.salida += f'la {temporal}, {id}\n'
+            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.STRING and type(exp) == str and vls.constante == False:
             ts.actualizar(id, exp)
             lasttemporal = ts.lastTemporal()
             temporal = ts.generateTemporal()
-            ts.salida += f'la t{temporal}, {id}\n'
-            ts.salida += f'sw t{lasttemporal}, 0(t{ts.lastTemporal()})\n'
+            ts.salida += f'la {temporal}, {id}\n'
+            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
         elif vls.tipo == TIPO_DATO.CHAR and type(exp) == str and vls.constante == False:
             ts.actualizar(id, exp)
         elif vls.tipo == "RFOROF":

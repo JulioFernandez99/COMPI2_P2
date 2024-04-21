@@ -13,9 +13,16 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
-            var a = 7 - (5 + 10 * (2 + 4 * (5 + 2 * 3)) - 8 * 3 * 3) + 50 * (6 * 2);
-            console.log("hola mundo"," valor ");
+            if(100>50){
+                console.log("PRIMER IF CORRECTO");
+            }else if(10<50){
+                console.log("SEGUNDO IF CORRECTO");
+            }else if(10==10){
+                console.log("TERCER IF CORRECTO");
+            }
+            
 
+            console.log("--------------------------");
     '''
     
     instrucciones = g.parse(input_text)
