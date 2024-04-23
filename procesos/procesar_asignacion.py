@@ -11,7 +11,9 @@ def procesar_asignacion(instr, ts):
     id = instr.id
     exp = resolver_expresion(instr.exp, ts)
     vls = ts.obtener(id) 
+    
 
+    
 
     
     
@@ -21,6 +23,7 @@ def procesar_asignacion(instr, ts):
         
         if vls.tipo == TIPO_DATO.ENTERO and type(exp) == int and vls.constante == False:
             ts.actualizar(id, exp)
+            
             lasttemporal = ts.lastTemporal()
             temporal = ts.generateTemporal()
             ts.salida += f'la {temporal}, {id}\n'

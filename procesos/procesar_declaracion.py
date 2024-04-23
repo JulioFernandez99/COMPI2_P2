@@ -244,6 +244,14 @@ def declaracion_sin_tipo_con_valor(id,tipoValor,exp,ts):
         simbolo = Simbolos(id, TIPO_DATO.BOOLEAN, exp)
         ts.agregar(simbolo)
     elif tipoValor is type("") and len(exp)>1:
+
+        simbolo = Simbolos(id, TIPO_DATO.ENTERO, exp)
+        ts.agregar(simbolo)
+        ts.dato += f'{id}: .word 0\n'
+        lasttemporal = ts.lastTemporal()
+        temporal = ts.generateTemporal()
+        ts.salida += f'la {temporal}, {id}\n'
+        ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
         simbolo = Simbolos(id, TIPO_DATO.STRING, exp)
         ts.agregar(simbolo)
     elif tipoValor is type("") and len(exp)==1:
@@ -289,15 +297,8 @@ def procesar_declaracion(instr, ts):
     tipoVariable = instr.tipovar 
     tipoValor = type(exp)
 
-    id = instr.id
-   
-    simbolo = Simbolos(id, TIPO_DATO.ENTERO, exp)
-    ts.agregar(simbolo)
-    ts.dato += f'{id}: .word 0\n'
-    lasttemporal = ts.lastTemporal()
-    temporal = ts.generateTemporal()
-    ts.salida += f'la {temporal}, {id}\n'
-    ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
+
+  
     
     if exp!="ERARA91":
         

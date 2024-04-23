@@ -32,6 +32,7 @@ from instrucciones.instrucciones import *
 def procesar_instrucciones(instrucciones, ts,save=False) :
     
     for instr in instrucciones :
+
         if not save and ts.existContinue==False and ts.existBreak==False:
             if isinstance(instr, Imprimir) : procesar_imprimir(instr,ts)
             elif isinstance(instr, Declaracion): procesar_declaracion(instr, ts)

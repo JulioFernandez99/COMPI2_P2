@@ -13,18 +13,13 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
-            if(10>50){
-                console.log("PRIMER IF CORRECTO");
-            }else if(100<50){
-                console.log("SEGUNDO IF CORRECTO");
-            }else if(10==110){
-                console.log("TERCER IF CORRECTO");
-            }else{
-                console.log("ELSE");
+            let a = 4;
+            while(a>1){
+                console.log("While ");
+                a = a - 1;
             }
-            
 
-            console.log("--------------------------");
+
     '''
     
     instrucciones = g.parse(input_text)
@@ -46,7 +41,8 @@ if __name__ == '__main__':
             ecall
 
     ''')
-            
+
+
    
 
 

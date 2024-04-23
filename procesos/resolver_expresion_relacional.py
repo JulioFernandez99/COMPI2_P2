@@ -29,4 +29,5 @@ def resolver_expresion_relacional(expLog, ts):
         ts.salida += f'bne {exp1}, {exp2}, {etiqueta}\n'
         return etiqueta
     
+    
    

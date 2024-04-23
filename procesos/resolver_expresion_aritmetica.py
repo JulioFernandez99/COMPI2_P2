@@ -83,12 +83,12 @@ from procesos.procesar_asignacion_struct import procesar_asignacion_struct
 def resolver_expresion_aritmetica(expNum, ts) :
     from procesos.resolver_expresion import resolver_expresion
     
-    
     # if isinstance(expNum.exp1, ExpresionID) or isinstance(expNum.exp2, ExpresionID) or isinstance(expNum.exp1, ExpresionComilla) or isinstance(expNum.exp2, ExpresionComilla):
     #     return concatenar_cadenas(expNum,ts)
         
     
     if isinstance(expNum, ExpresionBinaria) :
+        
         exp1 = resolver_expresion_aritmetica(expNum.exp1, ts)
         exp2 = resolver_expresion_aritmetica(expNum.exp2, ts)
         
@@ -123,7 +123,15 @@ def resolver_expresion_aritmetica(expNum, ts) :
         temporal = f'{ts.generateTemporal()}'
         ts.salida += f'addi {temporal}, zero, {expNum.val}\n'
         return temporal
-    elif isinstance(expNum, ExpresionID): return ts.obtener(expNum.id).valor
+    elif isinstance(expNum, ExpresionID): 
+        
+        temporal = ts.generateTemporal()
+        ts.salida += f'''la {temporal}, {expNum.id}\n'''
+        temporal2 = ts.generateTemporal()
+        ts.salida += f'''lw {temporal2}, 0({temporal})\n'''
+
+        return temporal2
+        #return ts.obtener(expNum.id).valor
     elif isinstance(expNum, ExpresionNegativo) : return -1 * resolver_expresion_aritmetica(expNum.exp, ts)
     elif isinstance(expNum, AccesoStruct):
         return procesar_asignacion_struct(expNum,ts)
