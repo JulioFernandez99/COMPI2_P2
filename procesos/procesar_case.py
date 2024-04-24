@@ -21,7 +21,7 @@ def procesar_case(instr, ts,expLogSwitch):
 
             continue
         
-        ts.salida+=f'''bec {expLogSwitch}, {expLogCase},case{cont}\n\n'''
+        ts.salida+=f'''beq {expLogSwitch}, {expLogCase},case{cont}\n\n'''
 
         cont+=1
 
@@ -37,6 +37,9 @@ def procesar_case(instr, ts,expLogSwitch):
         ts.salida+=f'''case{cont}:\n'''
         procesar_instrucciones(caso.instrucciones, ts)
         cont+=1
+
+    
+   
         
     
     # for caso in instr.casos:
