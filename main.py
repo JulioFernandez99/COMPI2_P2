@@ -13,10 +13,24 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
-            let a = 4;
-            while(a>1){
-                console.log("While ");
-                a = a - 1;
+            
+            var a = 1;    
+
+
+
+            switch(a){
+                case 1:
+                    console.log("Caso 1");
+                    
+                case 2:
+                    console.log("Caso 2");
+                    
+                case 3:
+                    console.log("Caso 3");
+                    
+                default:
+                    console.log("Default");
+                    
             }
 
 
