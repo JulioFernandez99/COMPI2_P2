@@ -6,7 +6,7 @@ def procesar_switch(instr, ts):
     
     #print(vars(instr))
     expLogSwitch = resolver_expresion(instr.expLogica, ts)
-    print("---",expLogSwitch)
+    #print("---",expLogSwitch)
 
     ts.salida+=f''' 
         swtich:
