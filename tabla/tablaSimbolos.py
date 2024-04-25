@@ -37,8 +37,20 @@ class TablaSimbolos():
         self.temporal = -1
         self.label = -1
         self.msg = -1
+        self.break_indicador=-1
         self.stack = ["t0","t1","t2","s0","s1","a0","a1","a2","a3","a4","a5","a6","a7","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","t3","t4","t5","t6"]
         self.last_temp=[]
+        self.breaks=[]
+
+    def get_break(self):
+        self.break_indicador+=1
+        etiqueta=f"end{self.break_indicador}"
+        self.breaks.append(etiqueta)
+        return etiqueta 
+
+    def pop_break(self):
+        if len(self.breaks)>0:
+            return self.breaks.pop(0)
 
     def stack_exist(self,elemento):
         return elemento in self.stack

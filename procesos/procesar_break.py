@@ -1,2 +1,2 @@
 def procesar_break(instr,ts):
-    ts.existBreak=True
+    ts.salida+=f'''j {ts.pop_break()}\n'''

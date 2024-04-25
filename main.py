@@ -22,9 +22,10 @@ if __name__ == '__main__':
                 case 1:
                     console.log("Caso 1");
                     
+                    
                 case 2:
                     console.log("Caso 2");
-                    
+                    break;
                 case 3:
                     console.log("Caso 3");
                     

@@ -26,9 +26,9 @@ def procesar_case(instr, ts,expLogSwitch):
         cont+=1
 
     cont=1
-        
+  
+    end_switch=ts.get_break()
     for caso in instr.casos:
-        expLogCase=resolver_expresion(caso.expLogica,ts)
         if default==cont:
             ts.salida+=f'''default_case:\n'''
             procesar_instrucciones(caso.instrucciones, ts)
@@ -37,6 +37,8 @@ def procesar_case(instr, ts,expLogSwitch):
         ts.salida+=f'''case{cont}:\n'''
         procesar_instrucciones(caso.instrucciones, ts)
         cont+=1
+
+    ts.salida+=f'''{end_switch}:\n'''
 
     
    
