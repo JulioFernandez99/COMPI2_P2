@@ -14,19 +14,10 @@ if __name__ == '__main__':
 
     input_text ='''
             
-            var a = 1;    
-            switch(a){
-                case 1:
-                    console.log("Caso 1");   
-                case 2:
-                    console.log("Caso 2");
-                    break;
-                case 3:
-                    console.log("Caso 3");
-                default:
-                    console.log("Default");
-            }
             
+            for (var i: number = 20; i > 9; i--) {
+                console.log(i);
+            }   
     '''
     
     instrucciones = g.parse(input_text)
@@ -49,6 +40,8 @@ if __name__ == '__main__':
 
     ''')
 
+    print("----------Errores-----------")
+    print(ts.errores)
 
    
 

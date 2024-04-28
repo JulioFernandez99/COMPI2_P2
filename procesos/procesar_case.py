@@ -41,6 +41,7 @@ def procesar_case(instr, ts,expLogSwitch):
         cont+=1
 
     ts.salida+=f'''{end_switch}:\n'''
+    ts.pop_break()
 
     
    
