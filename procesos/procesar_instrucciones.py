@@ -62,6 +62,7 @@ def procesar_instrucciones(instrucciones, ts,save=False) :
                 ts.errores+="Error: instrucción no válida\n"
 
         else:       
+            
             if isinstance(instr, Function): guardar_funcion(instr, ts)
             elif isinstance(instr, Interface): guardar_interface(instr, ts)
                 

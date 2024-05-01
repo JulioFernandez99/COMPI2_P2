@@ -2,6 +2,7 @@
 
 def procesar_acceso_array(instr, ts):
     from procesos.resolver_expresion import resolver_expresion
+    
     id=instr.id
     acceso=resolver_expresion(instr.acceso, ts)
     

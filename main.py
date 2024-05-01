@@ -13,20 +13,26 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
+            var a: number = 2;
+            console.log("valor: ", a," ", a);
+
             
             
-            for (var i: number = 20; i > 9; i--) {
-                console.log(i);
-            }   
     '''
     
     instrucciones = g.parse(input_text)
     ts = TablaSimbolos()
-    procesar_instrucciones(instrucciones, ts)
+    try:
+        procesar_instrucciones(instrucciones, ts, save=True)
+        procesar_instrucciones(instrucciones,ts)
+    except Exception as e:
+        print("Error", e)
+
+
 
     print(f'''
             .data
-                
+            salto: .asciz "\\n"
             {ts.dato}
 
             .text
@@ -35,8 +41,13 @@ if __name__ == '__main__':
 
             {ts.salida}
 
+
             li a7, 10    
             ecall
+
+            {ts.funciones}
+
+            
 
     ''')
 

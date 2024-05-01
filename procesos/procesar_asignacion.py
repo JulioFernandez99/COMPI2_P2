@@ -12,10 +12,6 @@ def procesar_asignacion(instr, ts):
     exp = resolver_expresion(instr.exp, ts)
     vls = ts.obtener(id) 
     
-
-    
-
-    
     
     #zprint("llegue aca*-----------------",vls.tipo,exp,type(exp),instr.exp)
     
@@ -23,7 +19,6 @@ def procesar_asignacion(instr, ts):
         
         if vls.tipo == TIPO_DATO.ENTERO and type(exp) == int and vls.constante == False:
             ts.actualizar(id, exp)
-            
             lasttemporal = ts.lastTemporal()
             temporal = ts.generateTemporal()
             ts.salida += f'la {temporal}, {id}\n'

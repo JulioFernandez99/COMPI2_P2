@@ -2,6 +2,7 @@
 
 
 import numpy as np
+from expresiones.array import Vector
 from tabla.tablaSimbolos import TIPO_DATO, Simbolos
 
 
@@ -285,46 +286,30 @@ def procesar_declaracion(instr, ts):
     
     id = instr.id
 
-    exp = resolver_expresion(instr.exp, ts)
-    
-    tipoDec = instr.tipodec  
-    tipoVariable = instr.tipovar 
-    tipoValor = type(exp)
-
-    simbolo = Simbolos(id, TIPO_DATO.ENTERO, exp)
-    ts.agregar(simbolo)
-    ts.dato += f'{id}: .word 0\n'
-    lasttemporal = ts.lastTemporal()
-    temporal = ts.generateTemporal()
-    ts.salida += f'la {temporal}, {id}\n'
-    ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
-
-  
-    
-    if exp!="ERARA91":
+    if isinstance(instr.exp, Vector):
+        data_Array=""
         
-        if tipoValor!=type(None) and tipoDec!=None and tipoVariable!=None and tipoDec!="const":
-            #print("Declaracion con tipo y con valor***")
-            declaracion_con_tipo_con_valor(tipoVariable, tipoDec, tipoValor, id, ts,exp)
-            
-        elif tipoValor==type(None) and tipoDec!=None and tipoVariable!=None and tipoDec!="const":
-            
-            #print("Declaracion con tipo y sin valor***")
-            declaracion_con_tipo_sin_valor(tipoVariable, tipoDec, id, ts)
-            
-        elif tipoDec=="const":
-            #print("Declaracion de una constante***")
-            declaracion_const(exp,tipoVariable, tipoDec, tipoValor, id, ts)
-            
-        elif tipoVariable==None and tipoDec!=None and tipoDec!="const" :
-            #---print("Declaracion sin tipo y con valor***")
-            declaracion_sin_tipo_con_valor(id,tipoValor,exp,ts)
-            
-        else:
-            print("Error5: tipo de dato no válido",type(exp),tipoDec,tipoVariable,tipoValor)
-            ts.errores+="Error5: tipo de dato no válido\n"
-    
+        for i in instr.exp.vector:
+            data_Array+=f"{i.val},"	
+        
+        data_Array=data_Array[:-1]
+        ts.dato+=f"{id}:\n"
+        ts.dato+=f".word {data_Array}\n"
+    else:
+        exp = resolver_expresion(instr.exp, ts)
+        
+        
 
+
+        
+        ts.dato += f'{id}: .word 0\n'
+        lasttemporal = ts.lastTemporal()
+        temporal = ts.generateTemporal()
+        ts.salida += f'la {temporal}, {id}\n'
+        ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
+
+    
+    
 def es_matriz(arr):
     # Verificar si es una lista y si tiene al menos una sublista
     if isinstance(arr, list) and len(arr) > 0:

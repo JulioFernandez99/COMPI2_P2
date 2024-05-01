@@ -27,7 +27,8 @@ class Simbolos(): #VALOR - NODO
 
 class TablaSimbolos():
 
-    def __init__(self, simbolos = {}, salida="",errores="",existBreak=False,existContinue=False,dato=''):
+    def __init__(self, simbolos = {}, salida="",errores="",existBreak=False,existContinue=False,dato='',funciones=""):
+        self.funciones = funciones
         self.simbolos = simbolos
         self.salida = salida
         self.dato = dato
