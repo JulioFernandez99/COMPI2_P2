@@ -20,11 +20,12 @@ if __name__ == '__main__':
             }
 
             function nombre(){
-                console.log("Hola mundo");
+                console.log("Julio Fernandez");
             }
 
 
             saludo();
+            nombre();
 
             
             
