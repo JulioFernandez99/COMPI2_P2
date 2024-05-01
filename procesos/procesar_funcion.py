@@ -15,8 +15,9 @@ from tabla.tablaSimbolos import TIPO_DATO, Simbolos, TablaSimbolos
 def procesar_funcion(instr, ts):
     from procesos.resolver_expresion import resolver_expresion
     from procesos.procesar_instrucciones import procesar_instrucciones
-    if instr.parametros == None:
-        ts.salida += f"jal ra,{instr.id}\n"
+    
+
+    ts.salida += f"jal ra,{instr.id}\n"
     
     
     # paramesRecive = instr.parametros   

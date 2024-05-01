@@ -13,8 +13,22 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
-            var a: number = 2;
-            console.log("valor: ", a," ", a);
+            
+            
+            function saludo(){
+                console.log("Hola mundo");
+            }
+
+            function nombre(){
+                console.log("Hola mundo");
+            }
+
+
+            saludo();
+
+            
+            
+
 
             
             

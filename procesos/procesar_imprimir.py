@@ -152,6 +152,12 @@ def procesar_imprimir(instr,ts):
                 ts.salida += f'''mv a0, {temp3}\n'''
                 ts.salida += f'''li a7, 1\n'''
                 ts.salida += f'''ecall\n'''
+
+                ts.salida += f'''la a1, salto
+                                    li a2, 1
+                                    li a0, 1 
+                                    li a7, 64 
+                                    ecall\n'''  
                 # exp=resolver_expresion(instr.cad[0].acceso, ts)
                 # ts.salida += f'''mul {temp2},{exp},temp4 #Calcular el desplazamiento ({exp} * 4)\n'''
               
