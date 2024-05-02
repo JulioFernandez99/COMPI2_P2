@@ -27,7 +27,7 @@ class Simbolos(): #VALOR - NODO
 
 class TablaSimbolos():
 
-    def __init__(self, simbolos = {}, salida="",errores="",existBreak=False,existContinue=False,dato='',funciones=""):
+    def __init__(self, simbolos = {}, salida="",errores="",existBreak=False,existContinue=False,dato='',funciones="",parametros={}):
         self.funciones = funciones
         self.simbolos = simbolos
         self.salida = salida
@@ -42,6 +42,7 @@ class TablaSimbolos():
         self.stack = ["t0","t1","t2","s0","s1","a0","a1","a2","a3","a4","a5","a6","a7","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","t3","t4","t5","t6"]
         self.last_temp=[]
         self.breaks=[]
+        self.parametros={}
 
     def get_break(self):
         self.break_indicador+=1

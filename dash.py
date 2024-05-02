@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox
 import tkinter.ttk as ttk
 from tkinter.constants import *
 
@@ -14,7 +15,18 @@ from tabla.tablaSimbolos import TablaSimbolos
 
 
 class rootlevel1:
-    
+    def copiar_texto(self):
+        texto=self.ts.salida
+        if texto:
+            # Borrar el contenido actual del portapapeles
+            self.root.clipboard_clear()
+            # Agregar el texto del Entry al portapapeles
+            self.root.clipboard_append(texto)
+            messagebox.showinfo("Copiado", "Texto copiado al portapapeles.")
+        else:
+            messagebox.showwarning("Advertencia", "El Entry está vacío.")
+
+
     def open_user_manual(self):
         print("Se seleccionó 'Manual de usuario'")
         # # Crear una instancia de Tkinter (si no está ya creada)
@@ -130,8 +142,30 @@ class rootlevel1:
         try:
             procesar_instrucciones(self.instrucciones, self.ts, save=True)
             procesar_instrucciones(self.instrucciones,self.ts)
+            
         except Exception as e:
             print("Error", e)
+
+
+        aux=f'''
+            .data
+            salto: .asciz "\\n"
+            {self.ts.dato}
+
+            .text
+            .globl main
+            main:
+
+            {self.ts.salida}
+
+
+            li a7, 10    
+            ecall
+
+            {self.ts.funciones}
+        '''
+
+        self.ts.salida=aux
             
         self.insertText(self.ts.salida)
         if len(self.ts.errores) > 0:
@@ -324,7 +358,7 @@ class rootlevel1:
         y_scrollbar.pack(side="right", fill="y")
         self.textInput.config(yscrollcommand=y_scrollbar.set)
 
-        self.btnReportes = tk.Button(self.framePrincipal)
+        self.btnReportes = tk.Button(self.framePrincipal,command=self.copiar_texto)
         self.btnReportes.place(relx=0.794, rely=0.351, height=44, width=157)
         self.btnReportes.configure(activebackground="beige")
         self.btnReportes.configure(activeforeground="black")
@@ -336,7 +370,7 @@ class rootlevel1:
         self.btnReportes.configure(highlightbackground="#d9d9d9")
         self.btnReportes.configure(highlightcolor="black")
         self.btnReportes.configure(pady="0")
-        self.btnReportes.configure(text='''Mostrar reportes''')
+        self.btnReportes.configure(text='''Copiar''')
 
         
     def run(self):

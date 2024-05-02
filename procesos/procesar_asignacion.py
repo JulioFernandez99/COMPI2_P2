@@ -9,50 +9,58 @@ from tabla.tablaSimbolos import TIPO_DATO
 def procesar_asignacion(instr, ts):
     
     id = instr.id
+    
     exp = resolver_expresion(instr.exp, ts)
-    vls = ts.obtener(id) 
-    
-    
+    #vls = ts.obtener(id) 
+    #ts.salida += f'+++++{vls}\n'
+
+    lasttemporal = ts.lastTemporal()
+    temporal = ts.generateTemporal()
+    ts.salida += f'la {temporal}, {id}\n'
+    ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
     #zprint("llegue aca*-----------------",vls.tipo,exp,type(exp),instr.exp)
     
-    if exp!="ERARA91":#este error es para cuando se intenta acceder a una posicion que no existe en el array
+    # if exp!="ERARA91":#este error es para cuando se intenta acceder a una posicion que no existe en el array
         
-        if vls.tipo == TIPO_DATO.ENTERO and type(exp) == int and vls.constante == False:
-            ts.actualizar(id, exp)
-            lasttemporal = ts.lastTemporal()
-            temporal = ts.generateTemporal()
-            ts.salida += f'la {temporal}, {id}\n'
-            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
-        elif vls.tipo == TIPO_DATO.DECIMAL and type(exp) == float and vls.constante == False:
-            ts.actualizar(id, exp)
-            lasttemporal = ts.lastTemporal()
-            temporal = ts.generateTemporal()
-            ts.salida += f'la {temporal}, {id}\n'
-            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
-        elif vls.tipo == TIPO_DATO.BOOLEAN and type(exp) == bool and vls.constante == False:
-            ts.actualizar(id, exp) 
-            lasttemporal = ts.lastTemporal()
-            temporal = ts.generateTemporal()
-            ts.salida += f'la {temporal}, {id}\n'
-            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
-        elif vls.tipo == TIPO_DATO.STRING and type(exp) == str and vls.constante == False:
-            ts.actualizar(id, exp)
-            lasttemporal = ts.lastTemporal()
-            temporal = ts.generateTemporal()
-            ts.salida += f'la {temporal}, {id}\n'
-            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
-        elif vls.tipo == TIPO_DATO.CHAR and type(exp) == str and vls.constante == False:
-            ts.actualizar(id, exp)
-        elif vls.tipo == "RFOROF":
-            print("Error: No se posible asignar valor a esta variable,pertenece a forOf")
-            ts.errores+="Error: No se posible asignar valor a esta variable,pertenece a forOf\n"
+
+        
+    #     if vls.tipo == TIPO_DATO.ENTERO and type(exp) == int and vls.constante == False:
+            
+    #         ts.actualizar(id, exp)
+    #         lasttemporal = ts.lastTemporal()
+    #         temporal = ts.generateTemporal()
+    #         ts.salida += f'la {temporal}, {id}\n'
+    #         ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
+    #     elif vls.tipo == TIPO_DATO.DECIMAL and type(exp) == float and vls.constante == False:
+    #         ts.actualizar(id, exp)
+    #         lasttemporal = ts.lastTemporal()
+    #         temporal = ts.generateTemporal()
+    #         ts.salida += f'la {temporal}, {id}\n'
+    #         ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
+    #     elif vls.tipo == TIPO_DATO.BOOLEAN and type(exp) == bool and vls.constante == False:
+    #         ts.actualizar(id, exp) 
+    #         lasttemporal = ts.lastTemporal()
+    #         temporal = ts.generateTemporal()
+    #         ts.salida += f'la {temporal}, {id}\n'
+    #         ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
+    #     elif vls.tipo == TIPO_DATO.STRING and type(exp) == str and vls.constante == False:
+    #         ts.actualizar(id, exp)
+    #         lasttemporal = ts.lastTemporal()
+    #         temporal = ts.generateTemporal()
+    #         ts.salida += f'la {temporal}, {id}\n'
+    #         ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
+    #     elif vls.tipo == TIPO_DATO.CHAR and type(exp) == str and vls.constante == False:
+    #         ts.actualizar(id, exp)
+    #     elif vls.tipo == "RFOROF":
+    #         print("Error: No se posible asignar valor a esta variable,pertenece a forOf")
+    #         ts.errores+="Error: No se posible asignar valor a esta variable,pertenece a forOf\n"
      
-        elif vls.constante == True:
-            print("Error: No se puede modificar el valor de una constante")
-            ts.errores+="Error: No se puede modificar el valor de una constante\n"
-        else:
-            print("Error: tipo de dato no válido***+",vls.tipo,exp,type(exp))
-            ts.errores+="Error: tipo de dato no válido\n"
+    #     elif vls.constante == True:
+    #         print("Error: No se puede modificar el valor de una constante")
+    #         ts.errores+="Error: No se puede modificar el valor de una constante\n"
+    #     else:
+    #         print("Error: tipo de dato no válido***+",vls.tipo,exp,type(exp))
+    #         ts.errores+="Error: tipo de dato no válido\n"
 
 def procesar_asignacion_operador(instr, ts):
     

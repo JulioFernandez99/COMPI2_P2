@@ -13,19 +13,29 @@ from tabla.tablaSimbolos import TablaSimbolos
 if __name__ == '__main__':
 
     input_text ='''
+       
             
+        var a = 7 - (5 + 10 * (2 + 4 * (5 + 2 * 3)) - 8 * 3 * 3) + 50 * (6 * 2);
+
+        var b=(2 * 2 * 2 * 2) - 9 - (8 - 6 + (3 * 3 - 6 * 5 - 7 - (9 + 7 * 7 * 7) + 10) - 5) + 8 - (6 - 5 * (2 * 3));
+
+        var c = a + ((2 + b * 3) + 1 - ((2 * 2 * 2) - 2) * 2) - 2;
+
             
-            function saludo(){
-                console.log("Hola mundo");
-            }
+        console.log("El valor de a es : ",a);
 
-            function nombre(){
-                console.log("Julio Fernandez");
-            }
+        console.log("El valor de b es : ",b);
+       
+        console.log("El valor de c es : ",c);
+
+        console.log("==================Acceso a arreglos==================");
+        var arr1 = [8, 4, 6, 2];
+        console.log(arr1[1]);
+
+        
 
 
-            saludo();
-            nombre();
+
 
             
             
@@ -44,7 +54,7 @@ if __name__ == '__main__':
         print("Error", e)
 
 
-
+    
     print(f'''
             .data
             salto: .asciz "\\n"

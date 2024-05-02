@@ -17,29 +17,43 @@ def procesar_imprimir(instr,ts):
         
         for i in range(len(instr.cad)):
             
-          
-           
-            
-
             if isinstance(instr.cad[i], ExpresionBinaria) :
                
                 exp, size = resolver_expresion(instr.cad[i], ts)
                 ts.salida += f'''la a1, {exp}
                             li a2, {size}
                             jal ra, console_log'''
+                
+                ts.salida += f'''la a1, salto
+                                li a2, 1
+                                li a0, 1 
+                                li a7, 64 
+                                ecall\n'''
             elif isinstance(instr.cad[i], ExpresionLogica):
                 exp, size = resolver_expresion(instr.cad[i], ts)
                 ts.salida += f'''la a1, {exp}
                             li a2, {size}
                             jal ra, console_log'''
+                
+                ts.salida += f'''la a1, salto
+                                li a2, 1
+                                li a0, 1 
+                                li a7, 64 
+                                ecall\n'''
             elif isinstance(instr.cad[i], ExpresionDobleComilla) :
                 exp, size = resolver_expresion(instr.cad[i], ts)
-                exp, size = resolver_expresion(instr.cad[i], ts)
+                
                 ts.salida += f'''la a1, {exp}
                                 li a2, {size}
                                 li a0, 1 
                                 li a7, 64 
                                 ecall\n'''
+                
+                # ts.salida += f'''la a1, salto
+                #                 li a2, 1
+                #                 li a0, 1 
+                #                 li a7, 64 
+                #                 ecall\n'''
                 
                 
             elif isinstance(instr.cad[i], ExpresionID):
@@ -53,6 +67,11 @@ def procesar_imprimir(instr,ts):
                                 li a7, 1
                                 ecall\n'''
                 
+                ts.salida += f'''la a1, salto
+                                li a2, 1
+                                li a0, 1 
+                                li a7, 64 
+                                ecall\n'''
                 
             
             elif isinstance(instr.cad[i], ExpresionNumero):
@@ -77,6 +96,12 @@ def procesar_imprimir(instr,ts):
                 ts.salida += f'''mv a0, t{size}
                             li a7, 1
                             ecall\n'''
+                
+                ts.salida += f'''la a1, salto
+                                li a2, 1
+                                li a0, 1 
+                                li a7, 64 
+                                ecall\n'''
             except:
                 exp = resolver_expresion_aritmetica(instr.cad[0], ts)
                 #ts.salida+=f"Error en la expresion aritmetica {exp}"
@@ -114,6 +139,12 @@ def procesar_imprimir(instr,ts):
                             li a7, 1
                             ecall\n'''
             
+    #         li a0, 1 # a0: file descriptor = 1 (stdout)
+    # la a1, msg_suma # a1: ubicacion del mensaje para el buffer
+    # li a2, 14 # a2: tamaño del buffer (14 bytes)
+    # li a7, 64 # a7: syscall code (write = 64)
+    # ecall # invoca la llamada al sistema
+            
             ts.salida += f'''la a1, salto
                                 li a2, 1
                                 li a0, 1 
@@ -127,6 +158,11 @@ def procesar_imprimir(instr,ts):
             ts.salida += f'''mv a0, {exp}
                             li a7, 1
                             ecall\n'''
+            ts.salida += f'''la a1, salto
+                                li a2, 1
+                                li a0, 1 
+                                li a7, 64 
+                                ecall\n'''
 
 
             

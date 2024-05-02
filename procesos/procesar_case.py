@@ -22,8 +22,6 @@ def procesar_case(instr, ts,expLogSwitch):
             continue
         
         ts.salida+=f'''beq {expLogSwitch}, {expLogCase},case{cont}\n\n'''
-        ts.stack.append(expLogCase)
-
 
         cont+=1
 
@@ -41,7 +39,6 @@ def procesar_case(instr, ts,expLogSwitch):
         cont+=1
 
     ts.salida+=f'''{end_switch}:\n'''
-    ts.pop_break()
 
     
    

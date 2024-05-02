@@ -301,13 +301,14 @@ def procesar_declaracion(instr, ts):
         
 
 
-        
-        ts.dato += f'{id}: .word 0\n'
-        lasttemporal = ts.lastTemporal()
-        temporal = ts.generateTemporal()
-        ts.salida += f'la {temporal}, {id}\n'
-        ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
-
+        try:
+            ts.dato += f'{id}: .word 0\n'
+            lasttemporal = ts.lastTemporal()
+            temporal = ts.generateTemporal()
+            ts.salida += f'la {temporal}, {id}\n'
+            ts.salida += f'sw {lasttemporal}, 0({ts.lastTemporal()})\n'
+        except:
+            pass
     
     
 def es_matriz(arr):
